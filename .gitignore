@@ -1,6 +1,27 @@
+# maven
+target
+
+# gradle
 .gradle
-/local.properties
-/.idea/workspace.xml
-/.idea/libraries
-.DS_Store
-/build
+build
+deploy.gradle
+idea.gradle
+eclipse.gradle
+
+# idea
+.idea
+*.iml
+*.ipr
+*.iws
+
+# eclipse
+.classpath
+.project
+.settings
+bin
+
+# mac
+*.DS_Store
+
+# Android
+local.properties

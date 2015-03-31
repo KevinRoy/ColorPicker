@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">ColorPicker</string>
 
+    <!-- title -->
+    <string name="title_activity_base">BaseActivity</string>
+    <string name="title_activity_start">StartActivity</string>
+
     <string name="take_phone">take_phone</string>
     <string name="test1">test1</string>
     <string name="test2">test2</string>
@@ -8,4 +12,8 @@
 
     <!-- picker color -->
     <string name="color_text">#ff0000</string>
+
+    <string name="color_picker">COLORPICKER</string>
+
+
 </resources>

@@ -14,4 +14,10 @@
         <item name="colorAccent">@color/nliveo_blue_colorPrimary</item>
     </style>
 
+    <style name="Start" parent="AppTheme">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
 </resources>

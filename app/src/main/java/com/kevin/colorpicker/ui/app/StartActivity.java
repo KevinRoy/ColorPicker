@@ -1,16 +1,17 @@
 package com.kevin.colorpicker.ui.app;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.kevin.colorpicker.R;
+import com.kevin.colorpicker.ui.main.MainActivity;
 import com.kevin.colorpicker.ui.widget.ShimmerFrameLayout;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 
 public class StartActivity extends BaseActivity {
 
-    @InjectView(R.id.shimmer_layout)
+    @Bind(R.id.shimmer_layout)
     ShimmerFrameLayout mShimmerLayout;
 
     @Override
@@ -35,6 +36,14 @@ public class StartActivity extends BaseActivity {
 
     private void initView() {
         mShimmerLayout.useDefaults();
+        mShimmerLayout.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(StartActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }, 2000);
     }
 
 }

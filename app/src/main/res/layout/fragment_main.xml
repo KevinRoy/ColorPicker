@@ -6,6 +6,12 @@
     android:orientation="vertical"
     tools:context="com.kevin.colorpicker.ui.main.MainFragment">
 
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="@color/button_material_dark">
+
+    </android.support.v7.widget.Toolbar>
     <ImageView
         android:id="@+id/image_picker"
         android:layout_width="match_parent"

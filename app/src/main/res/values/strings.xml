@@ -13,7 +13,6 @@
     <!-- picker color -->
     <string name="color_text">#ff0000</string>
 
-    <string name="color_picker">COLORPICKER</string>
-
+    <string name="color_picker">COLOR PICKER</string>
 
 </resources>

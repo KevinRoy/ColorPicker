@@ -17,11 +17,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.main.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/LiveoDrawer"></activity>
-        <activity
-            android:name=".ui.app.BaseActivity"
-            android:label="@string/title_activity_base"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".ui.app.StartActivity"
             android:label="@string/title_activity_start"
@@ -33,5 +29,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

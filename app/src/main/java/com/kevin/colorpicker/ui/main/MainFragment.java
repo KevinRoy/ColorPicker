@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.kevin.colorpicker.R;
 import com.kevin.colorpicker.ui.app.BaseFragment;
 
@@ -31,25 +30,21 @@ public class MainFragment extends BaseFragment {
     ImageView mImageColor;
     @Bind(R.id.image_text)
     TextView mImageText;
-    @Bind(R.id.take_photo)
-    FloatingActionButton mTakePhoto;
-    @Bind(R.id.from_mobile)
-    FloatingActionButton mFromMobile;
 
     private Uri photoUri;
 
-    @OnClick(R.id.take_photo)
-    void takePhoto() {
-
-    }
-
-    @OnClick(R.id.from_mobile)
-    void fromMobile() {
-        Intent intent = new Intent();
-        intent.setType(IMAGE_TYPE);
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "select_picture"), FROM_MOBILE_REQUEST_CODE);
-    }
+//    @OnClick(R.id.take_photo)
+//    void takePhoto() {
+//
+//    }
+//
+//    @OnClick(R.id.from_mobile)
+//    void fromMobile() {
+//        Intent intent = new Intent();
+//        intent.setType(IMAGE_TYPE);
+//        intent.setAction(Intent.ACTION_GET_CONTENT);
+//        startActivityForResult(Intent.createChooser(intent, "select_picture"), FROM_MOBILE_REQUEST_CODE);
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

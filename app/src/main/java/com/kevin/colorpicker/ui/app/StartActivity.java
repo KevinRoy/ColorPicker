@@ -5,14 +5,20 @@ import android.os.Bundle;
 
 import com.kevin.colorpicker.R;
 import com.kevin.colorpicker.ui.main.MainActivity;
-import com.kevin.colorpicker.ui.widget.ShimmerFrameLayout;
+import com.kevin.colorpicker.ui.widget.WaterWaveLayout;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class StartActivity extends BaseActivity {
 
-    @Bind(R.id.shimmer_layout)
-    ShimmerFrameLayout mShimmerLayout;
+    @Bind(R.id.wave)
+    WaterWaveLayout wave;
+
+    private int i = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,28 +28,24 @@ public class StartActivity extends BaseActivity {
         initView();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mShimmerLayout.startShimmerAnimation();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mShimmerLayout.stopShimmerAnimation();
-    }
-
     private void initView() {
-        mShimmerLayout.useDefaults();
-        mShimmerLayout.postDelayed(new Runnable() {
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Intent intent = new Intent(StartActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (i == 3) {
+                            timer.cancel();
+                            Intent intent = new Intent(StartActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        i++;
+                    }
+                });
             }
-        }, 2000);
+        }, 20, 2000);
     }
-
 }

@@ -1,14 +1,9 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="Widget.Base.ActionBar" parent="Theme.AppCompat.Light.NoActionBar">
-
-    </style>
-
-    <style name="AppTheme" parent="android:Theme.DeviceDefault.NoActionBar.Fullscreen">
-        <item name="colorPrimary">@color/nliveo_blue_colorPrimary</item>
-        <item name="colorPrimaryDark">@color/nliveo_blue_colorPrimaryDark</item>
-        <item name="colorAccent">@color/nliveo_blue_colorPrimary</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryDark">@color/deep_blue</item>
+        <item name="colorAccent">@color/blue</item>
     </style>
 
     <style name="Start" parent="Theme.AppCompat.Light.NoActionBar">
@@ -16,5 +11,11 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="Toolbar">
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">?attr/colorPrimary</item>
     </style>
 </resources>

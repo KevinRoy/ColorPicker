@@ -3,6 +3,16 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <!-- Paddings -->
+    <dimen name="padding_min">2.5dp</dimen>
+    <dimen name="padding_s">5dp</dimen>
+    <dimen name="padding_m">10dp</dimen>
+    <dimen name="padding_l">12dp</dimen>
+    <dimen name="padding_ll">15dp</dimen>
+    <dimen name="padding_xl">20dp</dimen>
+    <dimen name="padding_xxl">25dp</dimen>
+    <dimen name="padding_super">30dp</dimen>
+
     <!-- text size -->
     <dimen name="text_size_s">5sp</dimen>
     <dimen name="text_size_m">10sp</dimen>

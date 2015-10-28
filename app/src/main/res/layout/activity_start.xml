@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".StartActivity">
 
-    <com.kevin.colorpicker.ui.widget.WaterWaveLayout
+    <com.kevin.colorpicker.widget.WaterWaveLayout
         android:id="@+id/wave"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,5 +17,5 @@
         wave:wave_length="middle"
         wave:machineColor="#009688"
         wave:holeRadius="60dp">
-    </com.kevin.colorpicker.ui.widget.WaterWaveLayout>
+    </com.kevin.colorpicker.widget.WaterWaveLayout>
 </FrameLayout>

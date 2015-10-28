@@ -1,11 +1,10 @@
-package com.kevin.colorpicker.ui.widget;
+package com.kevin.colorpicker.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
-import com.kevin.colorpicker.ui.widget.waterwave.OverlayView;
-import com.kevin.colorpicker.ui.widget.waterwave.WaterWave;
+import com.kevin.colorpicker.widget.waterwave.WaterWave;
 
 /**
  * Created by kevin on 15/9/1.

@@ -5,14 +5,8 @@
     <string name="title_activity_base">BaseActivity</string>
     <string name="title_activity_start">StartActivity</string>
 
-    <string name="take_phone">take_phone</string>
-    <string name="test1">test1</string>
-    <string name="test2">test2</string>
+    <string name="take_camera">照相</string>
+    <string name="take_gallery">相册</string>
     <string name="settings">settings</string>
-
-    <!-- picker color -->
-    <string name="color_text">#ff0000</string>
-
-    <string name="color_picker">COLOR PICKER</string>
-
+    <string name="color_text">#111111</string>
 </resources>

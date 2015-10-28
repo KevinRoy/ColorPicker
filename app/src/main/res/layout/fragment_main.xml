@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,52 +9,70 @@
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@color/button_material_dark">
+        android:background="@color/blue" />
 
-    </android.support.v7.widget.Toolbar>
-
-    <ImageView
-        android:id="@+id/image_picker"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_margin="20dp"
-        android:background="@drawable/ic_launcher" />
-
-    <LinearLayout
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/image_picker"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/image_color"
+            android:id="@+id/image_picker"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:background="@color/red" />
+            android:layout_height="300dp"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_launcher" />
 
-        <TextView
-            android:id="@+id/image_text"
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/image_picker"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/image_color"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@color/red" />
+
+            <TextView
+                android:id="@+id/image_color_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/color_text"
+                android:textSize="@dimen/text_size_color" />
+        </LinearLayout>
+
+        <com.github.clans.fab.FloatingActionMenu
+            android:id="@+id/fb_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/color_text"
-            android:textSize="@dimen/text_size_color" />
-    </LinearLayout>
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/padding_xl"
+            app:menu_colorNormal="@color/blue"
+            app:menu_colorPressed="@color/deep_blue"
+            app:menu_colorRipple="@color/blue"
+            app:menu_fab_size="normal"
+            app:menu_icon="@drawable/ic_action_send"
+            app:menu_openDirection="up"
+            app:menu_showShadow="true">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="@dimen/padding_xl"
-        android:src="@drawable/ic_action_send"
-        app:backgroundTint="#ff8fffeb"
-        app:rippleColor="#33728dff"
-        app:elevation="10dp"
-        app:borderWidth="0dp"
-        app:pressedTranslationZ="12dp"/>
-</RelativeLayout>
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fb_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fab_label="@string/take_camera"
+                app:fab_size="mini" />
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fb_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fab_label="@string/take_gallery"
+                app:fab_size="mini" />
+        </com.github.clans.fab.FloatingActionMenu>
+    </RelativeLayout>
+</LinearLayout>

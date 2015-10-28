@@ -1,4 +1,4 @@
-package com.kevin.colorpicker.ui.widget.waterwave;
+package com.kevin.colorpicker.widget.waterwave;
 
 import android.content.Context;
 import android.graphics.Canvas;

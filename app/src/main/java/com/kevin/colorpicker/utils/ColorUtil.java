@@ -25,11 +25,17 @@ public class ColorUtil {
         int xImage = 0;
         int yImage = 0;
 
+        BitmapDrawable bitmapDrawable = null;
 
         ImageView imageView = (ImageView) view;
-        BitmapDrawable bitmapDrawable = (BitmapDrawable) imageView.getDrawable();
-        Bitmap imageBitmap = bitmapDrawable.getBitmap();
 
+        if (imageView.getDrawable() != null) {
+            bitmapDrawable = (BitmapDrawable) imageView.getDrawable();
+        } else if (imageView.getBackground() != null) {
+            bitmapDrawable = (BitmapDrawable) imageView.getBackground();
+        }
+
+        Bitmap imageBitmap = bitmapDrawable.getBitmap();
 
         xImage = (int) (x * ((double) imageBitmap.getWidth() / (double) imageView.getWidth()));
         yImage = (int) (y * ((double) imageBitmap.getHeight() / (double) imageView.getHeight()));

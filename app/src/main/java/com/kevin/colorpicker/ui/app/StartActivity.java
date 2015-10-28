@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.kevin.colorpicker.R;
 import com.kevin.colorpicker.ui.main.MainActivity;
-import com.kevin.colorpicker.ui.widget.WaterWaveLayout;
+import com.kevin.colorpicker.widget.WaterWaveLayout;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -17,13 +17,13 @@ public class StartActivity extends BaseActivity {
 
     @Bind(R.id.wave)
     WaterWaveLayout wave;
-
     private int i = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+        ButterKnife.bind(this);
 
         initView();
     }

@@ -7,20 +7,17 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.kevin.colorpicker.R;
 import com.kevin.colorpicker.ui.app.BaseFragment;
 import com.kevin.colorpicker.utils.ColorUtil;
@@ -34,6 +31,7 @@ import java.io.FileNotFoundException;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import uk.co.senab.photoview.PhotoView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,11 +44,13 @@ public class MainFragment extends BaseFragment {
     public static final int FROM_CAMERA_REQUEST_CODE = 1;
 
     @Bind(R.id.image_picker)
-    ImageView mImagePicker;
+    PhotoView mImagePicker;
     @Bind(R.id.image_color)
     ImageView mImageColor;
     @Bind(R.id.image_color_text)
     TextView mImageText;
+    @Bind(R.id.fb_menu)
+    FloatingActionMenu fbMenu;
 
     private Uri photoUri;
     private RalColor ralColor = null;
@@ -93,6 +93,7 @@ public class MainFragment extends BaseFragment {
 
         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
         startActivityForResult(intent, FROM_CAMERA_REQUEST_CODE);
+
     }
 
     @OnClick(R.id.fb_gallery)
@@ -119,6 +120,9 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (fbMenu.isOpened()) {
+            fbMenu.close(false);
+        }
         switch (requestCode) {
             default:
                 super.onActivityResult(requestCode, resultCode, data);
@@ -133,8 +137,8 @@ public class MainFragment extends BaseFragment {
                 break;
             case FROM_CAMERA_REQUEST_CODE:
                 if (resultCode == getActivity().RESULT_OK) {
-//                    if (data == null || data.getData() == null)
-//                        return;
+                    if (photoUri == null)
+                        return;
 
                     updateColorImage();
                 }

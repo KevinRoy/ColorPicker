@@ -2,15 +2,21 @@ package com.kevin.colorpicker.ui.main;
 
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,8 +24,12 @@ import com.github.clans.fab.FloatingActionButton;
 import com.kevin.colorpicker.R;
 import com.kevin.colorpicker.ui.app.BaseFragment;
 import com.kevin.colorpicker.utils.ColorUtil;
+import com.kevin.colorpicker.utils.FileConstantsUtil;
 import com.kevin.colorpicker.utils.RalColor;
 import com.kevin.colorpicker.utils.StringUtil;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -76,7 +86,13 @@ public class MainFragment extends BaseFragment {
 
     @OnClick(R.id.fb_camera)
     void camera() {
+        Intent intent = new Intent();
+        intent.setAction("android.media.action.IMAGE_CAPTURE");
+        intent.addCategory("android.intent.category.DEFAULT");
+        photoUri = Uri.fromFile(new File(FileConstantsUtil.IMG_PATH));
 
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+        startActivityForResult(intent, FROM_CAMERA_REQUEST_CODE);
     }
 
     @OnClick(R.id.fb_gallery)
@@ -112,6 +128,15 @@ public class MainFragment extends BaseFragment {
                         return;
 
                     photoUri = data.getData();
+                    updateColorImage();
+                }
+                break;
+            case FROM_CAMERA_REQUEST_CODE:
+                if (resultCode == getActivity().RESULT_OK) {
+//                    if (data == null || data.getData() == null)
+//                        return;
+
+                    updateColorImage();
                 }
                 break;
         }
@@ -130,7 +155,7 @@ public class MainFragment extends BaseFragment {
     }
 
     /**
-     *
+     * update the color data
      */
     private void updateColorData() {
         int index = ralColor.getIndex();
@@ -142,5 +167,60 @@ public class MainFragment extends BaseFragment {
         mImageText.setText("#".concat(StringUtil.ConcatString(Integer.toHexString(red)))
                 .concat(StringUtil.ConcatString(Integer.toHexString(green)))
                 .concat(StringUtil.ConcatString(Integer.toHexString(blue))));
+    }
+
+    /**
+     * update the color imageView
+     */
+    private void updateColorImage() {
+
+        if (photoUri == null || mImagePicker == null)
+            return;
+
+        int targetW = mImagePicker.getWidth();
+        int targetH = mImagePicker.getHeight();
+
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+        try {
+            BitmapFactory.decodeStream(getActivity().getContentResolver().openInputStream(photoUri),
+                    null, bmOptions);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        int photoW = bmOptions.outWidth;
+        int photoH = bmOptions.outHeight;
+
+
+        int scaleFactor = 1;
+        try {
+            scaleFactor = Math.min(photoW / targetW, photoH / targetH);
+        } catch (ArithmeticException e) {
+            e.printStackTrace();
+        }
+
+        bmOptions.inJustDecodeBounds = false;
+        bmOptions.inSampleSize = scaleFactor;
+        bmOptions.inPurgeable = true;
+
+        try {
+            Bitmap bitmap = BitmapFactory.decodeStream(
+                    getActivity().getContentResolver().openInputStream(photoUri),
+                    null, bmOptions);
+
+            int bitmapSize = bitmap.getRowBytes() * bitmap.getHeight();
+
+            if (bitmapSize > 20000000) {
+                bmOptions.inSampleSize = 2;
+                bitmap = BitmapFactory.decodeStream(
+                        getActivity().getContentResolver().openInputStream(photoUri),
+                        null, bmOptions);
+            }
+
+            mImagePicker.setImageBitmap(bitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -2,11 +2,15 @@ package com.kevin.colorpicker.ui.app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 
 import com.kevin.colorpicker.R;
 import com.kevin.colorpicker.ui.main.MainActivity;
+import com.kevin.colorpicker.utils.FileConstantsUtil;
 import com.kevin.colorpicker.widget.WaterWaveLayout;
 
+import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -29,6 +33,16 @@ public class StartActivity extends BaseActivity {
     }
 
     private void initView() {
+
+        boolean sdCardExist = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
+        if (sdCardExist) {
+            File dirFirstFile = new File(FileConstantsUtil.WORK_FOLDER_PHOTO_TEMP);
+            if (!dirFirstFile.exists()) {
+                dirFirstFile.mkdirs();
+                Log.d("hah", "j");
+            }
+        }
+
         final Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
